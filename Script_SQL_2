@@ -1,0 +1,67 @@
+use db_videolocadora_FECAF_Buster;
+
+insert into tbl_genero (nome_genero) values ('Guerra');
+
+insert into tbl_ator (nome_ator) values ('Tom Cruise');
+
+insert into tbl_diretor (nome_diretor,
+						 nacionalidade
+						) values (
+							'Doug Liman',
+							'Americano'
+						);
+
+insert into tbl_filme ( titulo,
+						sinopse,
+                        classificacao,
+                        ano_lancamento
+					  ) values (
+							'No Limite do Amanhã',
+                            'Em uma guerra contra alienígenas, William Cage descobre que tem a estranha habilidade de voltar no tempo, ficando preso em um eterno ciclo. Ele treina para usar suas novas habilidades, derrotar os invasores e acabar com a guerra..',
+                            'Não recomendado para menores de 14 anos',
+							'2014-05-29'
+					  );
+                      
+                      
+insert into tbl_filme_genero ( id_filme,
+							   id_genero
+							 ) values (23, 1), (23, 13);
+                             
+insert into tbl_filme_ator ( id_filme,
+							 id_ator
+							) values (23, 14);
+                            
+insert into tbl_filme_diretor ( id_filme,
+								id_diretor
+							  ) values (23, 27);
+                      
+insert into tbl_avaliacao ( nota,
+							comentario,
+                            data_avaliacao,
+                            id_filme
+						  ) values (
+								'5',
+                                'Filme impecável'
+                                '2024-09-24',
+                                '23'
+						  );
+                          
+insert into tbl_estoque ( qtde_estoque,
+						   id_filme
+						) values (
+							'5',
+                            '23'
+						);
+
+
+select * from tbl_estoque order by id_filme asc;
+
+select * from tbl_genero;
+select * from tbl_ator;
+select * from tbl_diretor;
+select * from tbl_filme;
+select * from tbl_filme_genero;
+select * from tbl_filme_ator;
+select * from tbl_filme_diretor;
+select * from tbl_avaliacao;
+select * from tbl_estoque;
