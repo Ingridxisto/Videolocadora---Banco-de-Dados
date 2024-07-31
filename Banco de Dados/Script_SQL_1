@@ -1,0 +1,112 @@
+create database db_videolocadora_FECAF_Buster;
+
+use db_videolocadora_FECAF_Buster;
+
+show tables;
+
+create table tbl_genero (
+	id int not null primary key auto_increment,
+    nome_genero varchar(45) not null,
+    
+    unique index(id)
+);
+
+create table tbl_ator(
+	id int not null primary key auto_increment,
+    nome_ator varchar(45) not null,
+    
+    unique index(id)
+);
+
+
+create table tbl_diretor(
+	id int not null primary key auto_increment,
+    nome_diretor varchar(60) not null,
+    nacionalidade varchar(50) not null,
+    
+    unique index(id)
+);
+
+create table tbl_filme (
+	id int not null primary key auto_increment,
+    titulo varchar(45) not null,
+    sinopse text(800) not null,
+    classificacao varchar(45) not null,
+    ano_lancamento date not null,
+    
+    unique index(id)
+);
+
+create table tbl_filme_genero (
+	id int not null primary key auto_increment,
+    id_filme int not null,
+    id_genero int not null,
+    
+    constraint FK_FILME_FILMEGENERO
+    foreign key (id_filme)
+    references tbl_filme(id),
+    
+    constraint FK_GENERO_FILMEGENERO
+    foreign key (id_genero)
+    references tbl_genero(id),
+    
+    unique index(id)
+);
+
+create table tbl_filme_ator (
+	id int not null primary key auto_increment,
+    id_filme int not null,
+    id_ator int not null,
+    
+    constraint FK_FILME_FILMEATOR
+    foreign key (id_filme)
+    references tbl_filme(id),
+    
+    constraint FK_ATOR_FILMEATOR
+    foreign key (id_ator)
+    references tbl_ator(id),
+    
+    unique index(id)
+);
+
+create table tbl_filme_diretor (
+	id int not null primary key auto_increment,
+    id_filme int not null,
+    id_diretor int not null,
+    
+    constraint FK_FILME_FILMEDIRETOR
+    foreign key (id_filme)
+    references tbl_filme(id),
+    
+    constraint FK_DIRETOR_FILMEDIRETOR
+    foreign key (id_diretor)
+    references tbl_diretor(id),
+    
+    unique index(id)
+);
+
+create table tbl_estoque (
+	id int not null primary key auto_increment,
+    qtde_estoque int not null,
+    id_filme int not null,
+    
+    constraint FK_FILME_ESTOQUE
+    foreign key (id_filme)
+    references tbl_filme(id),
+    
+    unique index(id)
+);
+
+create table tbl_avaliacao (
+	id int not null primary key auto_increment,
+    nota float not null,
+    comentario varchar(350),
+    data_avaliacao date,
+    id_filme int not null,
+    
+    constraint FK_FILME_AVALIACAO
+    foreign key (id_filme)
+    references tbl_filme(id),
+    
+    unique index(id)
+);
